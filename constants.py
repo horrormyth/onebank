@@ -1,0 +1,7 @@
+OP = 'OP'
+NORDEA = 'Nordea'
+
+NORDEA_HEADERS = ''
+OP_HEADERS = ''
+OP_BASE_URL = ''
+NORDEA_BASE_URL = ''
