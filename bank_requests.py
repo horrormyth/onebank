@@ -23,7 +23,7 @@ class BankAggrigator(object):
         """Custom request to handle all the requests types one point solution """
         response = request(method=method, url=url, headers=self.header)
         if not response.ok:
-            return False
+            return None
         return response
 
     def get_all_accounts(self):
@@ -76,25 +76,5 @@ class BankAggrigator(object):
         :type amount:
         :return:
         :rtype: get
-        """
-        pass
-
-
-    def initiate_payment(self):
-        """
-        payload example
-                {
-              "amount": 0,
-              "subject": "string",
-              "currency": "EUR",
-              "payerIban": "string",
-              "paymentId": "string",
-              "valueDate": "2018-02-09T09:32:01Z",
-              "receiverBic": "string",
-              "receiverIban": "string",
-              "receiverName": "string"
-            }
-            :return:
-        :rtype: post
         """
         pass
