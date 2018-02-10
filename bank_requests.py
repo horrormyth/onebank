@@ -15,7 +15,7 @@ class BankAggrigator(object):
                 self.base_url = NORDEA_BASE_URL
             else:
                 self.header = OP_HEADERS
-                self.base_url = OP_HEADERS
+                self.base_url = OP_BASE_URL
         else:
             raise BankAggrigatorError('Provided bank not found')
 
@@ -75,6 +75,6 @@ class BankAggrigator(object):
         :param amount:
         :type amount:
         :return:
-        :rtype: get
+        :rtype: POST
         """
         pass
