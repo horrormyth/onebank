@@ -14,7 +14,7 @@ NORDEA_CLIENT_SECRET = os.environ.get('NORDEA_SECRET', None)
 OP_BASE_URL = "https://sandbox.apis.op-palvelut.fi/"
 OP_CLIENT_ID = os.environ.get('OP_CLIENT_ID', None)
 OP_CLIENT_SECRET = os.environ.get('OP_SECRET', None)
-OP_X_API_KEY = os.environ.get('X_API_KEY', None)
+OP_X_API_KEY = os.environ.get('OP_X_API_KEY', None)
 
 NORDEA_HEADERS = {
     'X-IBM-Client-Id': NORDEA_CLIENT_ID,
