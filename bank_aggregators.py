@@ -6,7 +6,7 @@ from requests import request
 # Add this to nordea
 # self.header['Authorization']= 'Bearer {}'.format(generate_access_token),
 
-class BaseBankAggregator:
+class BaseBankAggregator(object):
     def __init__(self, name, headers, base_url):
         self.name = name
         self.headers = headers
@@ -116,4 +116,15 @@ class OPAggregator(BaseBankAggregator):
         }
         url = '{}/v1/payments/confirm'.format(self.base_url)
         response = self._request('post', url, data=payload)
+        return response
+
+
+class NordeaAggregator(BaseBankAggregator):
+    def __init__(self, name, headers, base_url):
+        super(NordeaAggregator, self).__init__(name, headers, base_url)
+        self.headers['Authorization'] = 'Bearer {}'.format(generate_access_token())
+
+    def get_all_accounts(self):
+        url = '{}v2/accounts'.format(self.base_url)
+        response = self._request('get', url)
         return response
