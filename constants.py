@@ -32,3 +32,4 @@ OP_HEADERS = {
     'x-authorization': "fdb6c7c24bbc3a2c4144c1848825ab7d3a4ccb43",
     'content-type': 'application/json'
 }
+REDIRECT_URI = 'http://httpbin.org/get'
