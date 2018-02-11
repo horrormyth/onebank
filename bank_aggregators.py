@@ -1,7 +1,11 @@
+import json
 from datetime import datetime
-from generate_access_token import generate_access_token
 
 from requests import request
+
+from constants import GET, POST, PUT
+from generate_access_token import generate_access_token
+
 
 # Add this to nordea
 # self.header['Authorization']= 'Bearer {}'.format(generate_access_token),
@@ -28,7 +32,7 @@ class OPAggregator(BaseBankAggregator):
         :rtype:get
         """
         url = '{}/v1/accounts'.format(self.base_url)
-        response = self._request('get', url)
+        response = self._request(GET, url)
         return response
 
     def get_account_by_id(self, account_id):
@@ -40,7 +44,7 @@ class OPAggregator(BaseBankAggregator):
         :rtype: get
         """
         url = '{}/v1/accounts/{}'.format(self.base_url, account_id)
-        response = self._request('get', url)
+        response = self._request(GET, url)
         return response
 
     def get_all_transaction_of_an_account(self, account_id):
@@ -52,7 +56,7 @@ class OPAggregator(BaseBankAggregator):
         :rtype: get
         """
         url = '{}/v1/accounts/{}/transactions'.format(self.base_url, account_id)
-        response = self._request('get', url)
+        response = self._request(GET, url)
         return response
 
     def get_transaction_detail(self, account_id, transaction_id):
@@ -66,7 +70,7 @@ class OPAggregator(BaseBankAggregator):
         :rtype: get
         """
         url = '{}/v1/accounts/{}/transactions/{}'.format(self.base_url, account_id, transaction_id)
-        response = self._request('get', url)
+        response = self._request(GET, url)
         return response
 
     def initiate_payment(self,
@@ -78,7 +82,6 @@ class OPAggregator(BaseBankAggregator):
                          receiver_bic=None,
                          receiver_name=None,
                          ):
-
         """
 
         :param sender_iban:
@@ -102,7 +105,7 @@ class OPAggregator(BaseBankAggregator):
         }
 
         url = '{}/v1/payments/initiate'.format(self.base_url)
-        response = self._request('post', url, data=payload)
+        response = self._request(POST, url, data=payload)
         return response
 
     def confirm_payment(self, payment_id):
@@ -115,7 +118,7 @@ class OPAggregator(BaseBankAggregator):
             'paymentId': payment_id
         }
         url = '{}/v1/payments/confirm'.format(self.base_url)
-        response = self._request('post', url, data=payload)
+        response = self._request(POST, url, data=payload)
         return response
 
 
@@ -126,5 +129,60 @@ class NordeaAggregator(BaseBankAggregator):
 
     def get_all_accounts(self):
         url = '{}v2/accounts'.format(self.base_url)
-        response = self._request('get', url)
+        response = self._request(GET, url)
+        return response
+
+    def get_account_by_id(self, account_id):
+        url = '{}v2/accounts/{}'.format(self.base_url, account_id)
+        response = self._request(GET, url)
+        return response
+
+    def get_all_transactions_of_an_account(self, account_id):
+        url = 'v2/accounts/{}/transactions'
+        response = self._request(GET, url)
+        return response
+
+    def get_all_payments(self):
+        url = 'v2/payments/sepa'
+        response = self._request(GET, url)
+        return response
+
+    def get_payment_by_id(self, payment_id):
+        url = 'v2/payments/sepa/{}'.format(payment_id)
+        response = self._request(GET, url)
+        return response
+
+    def initiate_payment(self,
+
+                         creditor_account_type,
+                         creditor_account,
+                         debtor_account,
+                         message='default',
+                         amount=0,
+                         currency='EUR',
+                         creditor_name='',
+                         ):
+        payload = {
+            "amount": amount,
+            "creditor": {
+                "account": {
+                    "_type": creditor_account_type,
+                    "value": creditor_account
+                },
+                "message": message,
+                "name": creditor_name,
+            },
+            "currency": currency,
+            "debtor": {
+                "_accountId": debtor_account
+            }
+        }
+
+        url = '{}v2/payments/sepa'.format(self.base_url)
+        response = self._request(POST, url, data=json.dumps(payload))
+        return response
+
+    def confirm_payment(self, payment_id):
+        url = '{}v2/payments/sepa/{}/confirm'.format(self.base_url, payment_id)
+        response = self._request(PUT, url)
         return response

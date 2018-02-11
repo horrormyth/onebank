@@ -31,3 +31,7 @@ OP_HEADERS = {
 }
 
 REDIRECT_URI = 'https://httpbin.org/get'
+
+GET = 'GET'
+POST = 'POST'
+PUT = 'PUT'
