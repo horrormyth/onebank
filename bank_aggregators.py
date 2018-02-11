@@ -14,7 +14,7 @@ class BaseBankAggregator:
 
     def _request(self, method, url, data=None):
         """Custom request tquests types one point solution """
-        response = request(method=method, url=url, headers=self.header, json=data)
+        response = request(method=method, url=url, headers=self.headers, json=data)
         if not response.ok:
             return None
         return response.json()
