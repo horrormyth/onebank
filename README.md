@@ -1,11 +1,11 @@
 # OneBank 
 Multibank aggrigator to manage and maintain multiple bank/accounts and fund from a single point
 
-This was the part of DIGIA API HACKATEMIA 2018 February for OpenBanking)
+This was the part of DIGIA API HACKATEMIA 2018 February for OpenBanking
 
-The code written here is only for proof of concept with no designings and error handling is done whatsoever.
+The code written nly for proof of concept with no design/archetecture and error handling is done whatsoever.
 
-#Instructions:
+# Instructions:
 - Install virtualenvwrapper [How to](http://virtualenvwrapper.readthedocs.io/en/latest/install.html])
 - Clone the repo 
 
