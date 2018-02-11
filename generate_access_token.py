@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
 import requests
+from constants import *
 
-from constants import REDIRECT_URI, NORDEA_BASE_URL
-
-CLIENT_ID = 'your client id here'
 CLIENT_SECRET = 'your client secret here'
 
 """
@@ -17,7 +14,7 @@ or by running this file i.e. 'nordea generate_access_token.py'
 def get_code():
     endpoint = 'v1/authentication'
     payload = {
-        'client_id': CLIENT_ID,
+        'client_id': NORDEA_CLIENT_ID,
         'redirect_uri': REDIRECT_URI,
         'state': ''
     }
@@ -33,8 +30,8 @@ def get_access_token(code):
     endpoint = 'v1/authentication/access_token'
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'X-IBM-Client-Id': CLIENT_ID,
-        'X-IBM-Client-Secret': CLIENT_SECRET
+        'X-IBM-Client-Id': NORDEA_CLIENT_ID,
+        'X-IBM-Client-Secret': NORDEA_CLIENT_SECRET
     }
 
     payload = {
@@ -55,7 +52,3 @@ def generate_access_token():
     access_token = get_access_token(code)
     return access_token
 
-
-if __name__ == '__main__':
-    access_token = generate_access_token()
-    print(access_token)
