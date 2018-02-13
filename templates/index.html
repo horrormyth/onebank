@@ -82,7 +82,7 @@
             <hr class="light my-4">
             <p class="text-faded mb-4">You have successfully connected bank accounts. </p>
             <p class="text-faded mb-4">Nordea: 2, Osuuspankki: 9</p>
-            <a class="btn btn-light btn-xl js-scroll-trigger" onclick="myFunc()" id="totalBalance"> Check current balance!</a>
+            <a class="btn btn-light btn-xl js-scroll-trigger" onclick="getBalance()" id="totalBalance"> Check current balance!</a>
 
           </div>
         </div>
@@ -270,8 +270,9 @@
     </section>
 
     <script>
-    function myFunc() {
-      document.getElementById("totalBalance").innerHTML = 30000 +" € in total";
+    function getBalance() {
+      var totbal = 100 //apicall here
+      document.getElementById("totalBalance").innerHTML = totbal +"€ in total";
     }
     </script>
     <script>

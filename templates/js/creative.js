@@ -15,7 +15,7 @@
     }
   });
 
-  $('myFunc()').on('click', function(event) {
+  $('getBalance()').on('click', function(event) {
     event.preventDefault(); // To prevent following the link (optional)
     //code here
   });
